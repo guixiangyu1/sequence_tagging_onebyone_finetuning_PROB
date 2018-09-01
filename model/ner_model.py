@@ -376,9 +376,12 @@ class NERModel(BaseModel):
         with open("results/correct_class.txt", "w") as f:
             for indicate, probility in zip(accs,prob):
                 if indicate:
-                    f.write("1,{}\n".format(probility))
+                    f.write("1 ")
                 else:
-                    f.write("0,{}\n".format(probility))
+                    f.write("0 ")
+                for num in probility:
+                    f.write("%.4f " % num)
+                f.write('\n')
         acc = np.mean(accs)
         print("correct_preds: ", acc*len(accs))
         print("correct_total: ", len(accs))
