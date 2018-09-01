@@ -11,7 +11,12 @@ if __name__ == '__main__':
 
     batch_size = config.batch_size
     for i, (words, labels, masks) in enumerate(minibatches(train, batch_size)):
-        print(masks)
-        print(i)
+
+        if i < 10:
+            word_ids,char_ids = zip(*words)
+            print(i)
+            print(char_ids)
+            print(word_ids)
+
 
 

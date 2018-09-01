@@ -297,7 +297,7 @@ class NERModel(BaseModel):
 
 
         labels_pred = self.sess.run(self.labels_pred, feed_dict=fd)
-        labels_probility = self.sess.run(self.logits)
+        labels_probility = self.sess.run(self.logits, feed_dict=fd) # [batch_size, max_len, 4 ]
 
         return labels_pred, sequence_lengths, labels_probility
 
@@ -358,12 +358,12 @@ class NERModel(BaseModel):
         for words, labels, masks in minibatches(test, self.config.batch_size):
             labels_pred, sequence_lengths, pred_prob = self.predict_batch(words)
 
-            for lab, lab_pred, length, mask in zip(labels,labels_pred, sequence_lengths, masks, pred_prob):
+            for lab, lab_pred, length, mask, sentence_prob in zip(labels,labels_pred, sequence_lengths, masks, pred_prob):
                 lab = lab[:length]
                 lab_pred = lab_pred[:length]
-                pred_prob = pred_prob[:length]
+                sentence_prob = sentence_prob[:length]
 
-                for (a, b, c, d) in zip(lab, lab_pred, mask, pred_prob):
+                for (a, b, c, d) in zip(lab, lab_pred, mask, sentence_prob):
                    if c:
                         accs += [a==b]
                         prob.append(d)
