@@ -73,7 +73,7 @@ class CoNLLDataset1(object):
                         words, tags = [], []
                 else:
                     ls = line.split(' ')
-                    word, tag = ls[0],ls[-1]
+                    word, tag = ls[0],ls[-1].split('-')[-1]
                     if self.processing_word is not None:
                         word = self.processing_word(word)
                     if self.processing_tag is not None:
@@ -274,16 +274,16 @@ def entity2vocab(datasets, vocab):
     for dataset in datasets:
         for words, tags in dataset:
             for word, tag in zip(words, tags):
-                tag_pre = tag.split('-')[0]
-                if tag_pre == 'B':
+                # tag_pre = tag.split('-')[0]
+                if tag == 'B':
                     if len(chunk) == 0:
                         chunk = word
                     else:
                         vocab.add(chunk)
                         chunk = word
-                if tag_pre == 'I':
+                if tag == 'I':
                     chunk = chunk + "$@&" + word
-                if tag_pre == 'O':
+                if tag == 'O':
                     if len(chunk) != 0:
                         vocab.add(chunk)
                         chunk = ""
