@@ -29,7 +29,11 @@ def main():
     train = CoNLLDataset1(config.filename_train, processing_word)
 
     # Build Word and Tag vocab
-    vocab_words, vocab_tags = get_vocabs([train, dev, test])   # word词表， tags表
+    vocab_words, vocab_tags = get_vocabs([train, dev])   # word词表， tags表
+    vocab_words_text, _ = get_vocabs([test])
+    vocab_words = vocab_words | vocab_words_text
+
+
     vocab_glove = get_glove_vocab(config.filename_glove)       # glove词表
 
 
