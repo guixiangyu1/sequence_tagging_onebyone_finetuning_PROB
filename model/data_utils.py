@@ -222,7 +222,8 @@ class CoNLLDataset(object):
                         chunk = word
                         if tag_pre == 'B':
                             mask += [True]
-                            tags += [self.processing_tag(tag_suf)]
+                            if self.processing_tag is not None:
+                                tags += [self.processing_tag(tag_suf)]
                         else:
                             mask += [False]
                             tags += [0]
