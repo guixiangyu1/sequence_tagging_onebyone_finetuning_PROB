@@ -73,15 +73,15 @@ def main():
 
     # build model
     model = NERModel(config)
-    model.build("fine_tuning")
+    model.build()
     model.restore_session(config.dir_model)
 
     # create dataset
-    test  = CoNLLDataset(config.filename_test, config.processing_word,
-                         max_iter=config.max_iter)
+    test  = CoNLLDataset(config.filename_dev, config.processing_word,
+                         config.processing_tag, config.max_iter)
 
     # evaluate and interact
-    model.classify(test)
+    model.evaluate(test)
     # interactive_shell(model)
 
 
