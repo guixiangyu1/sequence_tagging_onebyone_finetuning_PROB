@@ -77,11 +77,11 @@ class BaseModel(object):
                     # opt_vars = [v for v in tf.trainable_variables() if v.name == "words/_word_embeddings:0"]
                     # print(opt_vars)
                     # self.train_op = optimizer.minimize(loss, var_list=opt_vars)
-                elif indicate==None:
+                # elif indicate==None:
                     # self.train_op = optimizer.minimize(loss, var_list=[v for v in tf.trainable_variables() if v.name == "words/_word_embeddings:0"])
                     # grads = optimizer.compute_gradients(loss, [v for v in tf.trainable_variables() if
                     #                                            v.name == "words/_word_embeddings:0"])
-                    grads = optimizer.compute_gradients(loss, [v for v in tf.trainable_variables()])
+                    # grads = optimizer.compute_gradients(loss, [v for v in tf.trainable_variables()])
                 self.train_op = optimizer.apply_gradients(grads)
 
 
