@@ -73,7 +73,7 @@ def main():
 
     # build model
     model = NERModel(config)
-    model.build()
+    model.build("fine_tuning")
     model.restore_session(config.dir_model)
 
     # create dataset
