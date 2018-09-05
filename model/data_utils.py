@@ -73,7 +73,7 @@ class CoNLLDataset1(object):
                         words, tags = [], []
                 else:
                     ls = line.split(' ')
-                    word, tag = ls[0],ls[-1].split('-')[0]
+                    word, tag = ls[0],ls[-1]
                     if self.processing_word is not None:
                         word = self.processing_word(word)
                     if self.processing_tag is not None:
@@ -275,7 +275,7 @@ def entity2vocab(datasets, vocab):
     for dataset in datasets:
         for words, tags in dataset:
             for word, tag in zip(words, tags):
-                # tag = tag.split('-')[0]
+                tag = tag.split('-')[0]
                 print(tag)
                 if tag == 'B':
                     if len(chunk) == 0:
