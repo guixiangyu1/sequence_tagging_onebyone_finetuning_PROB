@@ -275,7 +275,7 @@ def entity2vocab(datasets, vocab):
     for dataset in datasets:
         for words, tags in dataset:
             for word, tag in zip(words, tags):
-                tag = tag.split('-')[0]
+                # tag = tag.split('-')[0]
                 if tag == 'B':
                     if len(chunk) == 0:
                         chunk = word
