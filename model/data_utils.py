@@ -404,10 +404,16 @@ def export_trimmed_glove_vectors(vocab, glove_filename, trimmed_filename, dim):
             keyword_index = vocab[keyword]
             keyword = keyword.split("$@&")
             for word in keyword:
+                # if word in vocab:
+                #     word_idx = vocab[word]
+                #     embedding_total.append(embeddings[word_idx])
+                #     embeddings[keyword_index] = np.mean(embedding_total, axis=0)
                 if word in vocab:
                     word_idx = vocab[word]
-                    embedding_total.append(embeddings[word_idx])
-                    embeddings[keyword_index] = np.mean(embedding_total, axis=0)
+                else:
+                    word_idx = vocab["$UNK$"]
+                embedding_total.append(embeddings[word_idx])
+                embeddings[keyword_index] = np.mean(embedding_total, axis=0)
 
     np.savez_compressed(trimmed_filename, embeddings=embeddings)    #压缩词嵌入到文件中，并且名字为embeddings
 
