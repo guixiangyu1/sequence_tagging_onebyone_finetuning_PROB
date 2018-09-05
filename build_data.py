@@ -40,6 +40,7 @@ def main():
     vocab = vocab_words & vocab_glove                          # & 求交集  set，都是集合
     vocab.add(UNK)
     vocab.add(NUM)                                             # 手动添加
+    print("len of vocab without entity: ", len(vocab))
 
     vocab = entity2vocab(datasets=[train, dev, test], vocab=vocab)
 
