@@ -14,7 +14,7 @@ def main():
     config.lr               = 0.0005
     config.lr_decay         = 1.0
     config.clip             = -5.0 # if negative, no clipping
-    config.nepoch_no_imprv  = 5
+    config.nepoch_no_imprv  = 10
     
     # build model
     model = NERModel(config)
