@@ -25,13 +25,13 @@ def main():
 
     # Generators
     dev   = CoNLLDataset1(config.filename_dev, processing_word) # 创建一个生成器对象，每一次迭代产生tuple （words，tags）
-    # test  = CoNLLDataset1(config.filename_test, processing_word) # 返回一句话（words），和标签tags
+    test  = CoNLLDataset1(config.filename_test, processing_word) # 返回一句话（words），和标签tags
     train = CoNLLDataset1(config.filename_train, processing_word)
 
     # Build Word and Tag vocab
     vocab_words, vocab_tags = get_vocabs([train, dev])   # word词表， tags表
-    # vocab_words_text, _ = get_vocabs([test])
-    # vocab_words = vocab_words | vocab_words_text
+    vocab_words_text, _ = get_vocabs([test])
+    vocab_words = vocab_words | vocab_words_text
     print(len(vocab_words))
 
 
@@ -43,8 +43,8 @@ def main():
     vocab.add(NUM)                                             # 手动添加
     print("len of vocab without entity: ", len(vocab))
 
-    # vocab = entity2vocab(datasets=[train, dev, test], vocab=vocab)
-    vocab = entity2vocab(datasets=[train, dev], vocab=vocab)
+    vocab = entity2vocab(datasets=[train, dev, test], vocab=vocab)
+    # vocab = entity2vocab(datasets=[train, dev], vocab=vocab)
 
     # Save vocab
     write_vocab(vocab, config.filename_words)
