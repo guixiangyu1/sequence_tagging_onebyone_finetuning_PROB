@@ -32,6 +32,7 @@ def main():
     vocab_words, vocab_tags = get_vocabs([train, dev])   # word词表， tags表
     vocab_words_text, _ = get_vocabs([test])
     vocab_words = vocab_words | vocab_words_text
+    print(len(vocab_words))
 
 
     vocab_glove = get_glove_vocab(config.filename_glove)       # glove词表
