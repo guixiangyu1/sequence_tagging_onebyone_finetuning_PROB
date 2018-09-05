@@ -5,12 +5,13 @@ from model.config import Config
 if __name__ == '__main__':
     config = Config()
 
-    with open(config.filename_glove) as f:
+    with open(config.filename_test) as f:
         for line in f:
             if "$NUM$" in line:
                 print(1)
             if "$UNK$" in line:
                 print(2)
+
 
 
 
