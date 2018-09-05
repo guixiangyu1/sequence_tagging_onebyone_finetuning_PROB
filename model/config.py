@@ -89,12 +89,12 @@ class Config():
     train_embeddings = False
     nepochs          = 200
     dropout          = 0.5
-    batch_size       = 60
+    batch_size       = 80
     lr_method        = "adam"
     lr               = 0.001
     lr_decay         = 1.0
     clip             = -1 # if negative, no clipping
-    nepoch_no_imprv  = 10
+    nepoch_no_imprv  = 5
 
     # model hyperparameters
     hidden_size_char = 100 # lstm on chars
