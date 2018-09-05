@@ -1,22 +1,24 @@
-from model.data_utils import CoNLLDataset, minibatches
+from model.data_utils import CoNLLDataset, get_vocabs, get_processing_word
 from model.config import Config
 
 
 if __name__ == '__main__':
-
     config = Config()
+    dev = CoNLLDataset(config.filename_dev, config.processing_word,
+                       config.processing_tag, config.max_iter)
+    i = 0
+    for words,tags,masks in dev:
+        pass
+    print(1)
+    for words,tags,masks in dev:
+        pass
+    print(2)
+    for words,tags, masks in dev:
+        if i < 20:
+            print(words)
+        i+=1
 
-    train = CoNLLDataset(config.filename_train, config.processing_word,
-                         config.processing_tag, config.max_iter)
 
-    batch_size = config.batch_size
-    for i, (words, labels, masks) in enumerate(minibatches(train, batch_size)):
-
-        if i < 10:
-            word_ids,char_ids = zip(*words)
-            print(i)
-            print(char_ids)
-            print(word_ids)
 
 
 
