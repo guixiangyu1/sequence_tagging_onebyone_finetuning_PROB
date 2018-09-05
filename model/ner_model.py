@@ -211,8 +211,8 @@ class NERModel(BaseModel):
             nsteps = tf.shape(output)[1]
             output = tf.reshape(output, [-1, 2*self.config.hidden_size_lstm])
             pred = tf.matmul(output, W) + b
-            pred_reshape = tf.reshape(pred, [-1, nsteps, 4])
-            self.logits = tf.nn.softmax(pred_reshape, -1)
+            self.logits = tf.reshape(pred, [-1, nsteps, 4])
+            self.probility = tf.nn.softmax(self.logits, -1)
 
 
 
@@ -297,7 +297,7 @@ class NERModel(BaseModel):
 
 
         labels_pred = self.sess.run(self.labels_pred, feed_dict=fd)
-        labels_probility = self.sess.run(self.logits, feed_dict=fd) # [batch_size, max_len, 4 ]
+        labels_probility = self.sess.run(self.probility, feed_dict=fd) # [batch_size, max_len, 4 ]
 
         return labels_pred, sequence_lengths, labels_probility
 
