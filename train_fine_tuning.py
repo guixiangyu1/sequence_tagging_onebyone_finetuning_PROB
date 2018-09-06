@@ -8,10 +8,10 @@ def main():
     #拥有词表、glove训练好的embeddings矩阵、str->id的function
     config = Config()
     config.nepochs          = 200
-    config.dropout          = 0.3
-    config.batch_size       = 20
+    config.dropout          = 0.5
+    config.batch_size       = 10
     config.lr_method        = "adam"
-    config.lr               = 0.0005
+    config.lr               = 0.0001
     config.lr_decay         = 1.0
     config.clip             = -5.0 # if negative, no clipping
     config.nepoch_no_imprv  = 10
