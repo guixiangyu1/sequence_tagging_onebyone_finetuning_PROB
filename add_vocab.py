@@ -31,13 +31,16 @@ def main():
     # Build Word and Tag vocab
 
     vocab_words, _ = get_vocabs([to_be_add])
-    # vocab_words = entity2vocab(datasets=[to_be_add], vocab=vocab_words)
+    vocab_glove = get_glove_vocab(config.filename_glove)  # glove词表
+
+    words_have_vec = vocab_words & vocab_glove
+
+    vocab_words_and_entity = entity2vocab(datasets=[to_be_add], vocab=words_have_vec)
+
     vocab_in_file = set(load_vocab(config.filename_words))
-    vocab_glove = get_glove_vocab(config.filename_glove)       # glove词表
 
+    vocab_words_to_be_add = vocab_words_and_entity - vocab_in_file
 
-    vocab_words_to_be_add = (vocab_words & vocab_glove) - vocab_in_file
-    vocab_words_to_be_add = entity2vocab(datasets=[to_be_add], vocab=vocab_words_to_be_add)
     if len(vocab_words_to_be_add) != 0:
         with open(config.filename_words, 'a') as f:
             for i, vocab_word in enumerate(vocab_words_to_be_add):
