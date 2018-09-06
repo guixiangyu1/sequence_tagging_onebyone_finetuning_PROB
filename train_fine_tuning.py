@@ -8,7 +8,7 @@ def main():
     #拥有词表、glove训练好的embeddings矩阵、str->id的function
     config = Config()
     config.nepochs          = 200
-    config.dropout          = 0.5
+    config.dropout          = 0.3
     config.batch_size       = 20
     config.lr_method        = "adam"
     config.lr               = 0.0005
