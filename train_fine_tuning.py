@@ -8,13 +8,13 @@ def main():
     #拥有词表、glove训练好的embeddings矩阵、str->id的function
     config = Config()
     config.nepochs          = 200
-    config.dropout          = 1.0
+    config.dropout          = 0.5
     config.batch_size       = 40
     config.lr_method        = "adam"
     config.lr               = 0.0001
     config.lr_decay         = 1.0
     config.clip             = -5.0 # if negative, no clipping
-    config.nepoch_no_imprv  = 5
+    config.nepoch_no_imprv  = 20
     
     # build model
     model = NERModel(config)
